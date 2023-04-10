@@ -1,4 +1,5 @@
 ﻿using Clean.Infrastructure.Persistence;
+using EntityFrameworkCore.UnitOfWork.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,10 +27,10 @@ namespace Clean.Infrastructure
             services.AddScoped<ApplicationDbContextInitializer>();
             #endregion
 
-            //#region UnitOfWork
-            //services.AddUnitOfWork();
-            //services.AddUnitOfWork<ApplicationDbContext>();
-            //#endregion
+            #region UnitOfWork
+            services.AddUnitOfWork();
+            services.AddUnitOfWork<ApplicationDbContext>();
+            #endregion
             return services;
         }
     }

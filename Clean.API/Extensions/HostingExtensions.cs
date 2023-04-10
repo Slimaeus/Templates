@@ -21,10 +21,13 @@ namespace Clean.API.Extensions
                 app.UseSwagger();
                 app.UseSwaggerUI();
 
+
+                #region Seed Data
                 using var scope = app.Services.CreateScope();
                 var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
                 await initialiser.InitialiseAsync();
                 await initialiser.SeedAsync();
+                #endregion
             }
 
             app.UseHttpsRedirection();

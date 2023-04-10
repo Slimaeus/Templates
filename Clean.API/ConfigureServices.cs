@@ -1,4 +1,5 @@
-﻿using Clean.Infrastructure.Persistence;
+﻿using Clean.API.Filters;
+using Clean.Infrastructure.Persistence;
 
 namespace Clean.API
 {
@@ -9,7 +10,10 @@ namespace Clean.API
             services.AddHealthChecks().AddDbContextCheck<ApplicationDbContext>();
 
             #region Controllers
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<ApiExceptionFilterAttribute>();
+            });
             #endregion
 
             #region Swagger
